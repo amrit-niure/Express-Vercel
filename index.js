@@ -25,6 +25,14 @@ const firstLayerSchema = mongoose.Schema({
 })
 const First = mongoose.model('First',firstLayerSchema)
 
+app.get('/', async (req,res)=>{
+    try {
+        const response = await First.find()
+        res.status(200).json(response)
+    } catch (err) {
+        res.status(409).json({message:`${err.message}` })
+    }
+})
 app.get('/api/data', async (req,res)=>{
     try {
         const response = await First.find()
@@ -72,7 +80,7 @@ app.post('/api/data/query/', async (req,res)=>{
 const PORT =  8080
 const connectDB = async () => {
     try {
-        const con = await mongoose.connect("mongodb+srv://admin:Atlassian@2023@cluster0.ma7iqqc.mongodb.net/?retryWrites=true&w=majority", {
+        const con = await mongoose.connect('mongodb+srv://amrit:Atlassian%402023@cluster0.ma7iqqc.mongodb.net/?retryWrites=true&w=majority', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
