@@ -25,14 +25,14 @@ const firstLayerSchema = mongoose.Schema({
 })
 const First = mongoose.model('First',firstLayerSchema)
 
-// app.get('/', async (req,res)=>{
-//     try {
-//         const response = 'This is root route.'
-//         res.status(200).json(response)
-//     } catch (err) {
-//         res.status(409).json({message:`${err.message}` })
-//     }
-// })
+app.get('/', async (req,res)=>{
+    try {
+        const response = 'This is root route.'
+        res.status(200).json(response)
+    } catch (err) {
+        res.status(409).json({message:`${err.message}` })
+    }
+})
 app.get('/api/data', async (req,res)=>{
     try {
         const response = await First.find()
