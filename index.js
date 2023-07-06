@@ -80,7 +80,7 @@ app.post('api/data/query/', async (req,res)=>{
 const PORT =  8080
 const connectDB = async () => {
     try {
-        const con = await mongoose.connect('mongodb+srv://amrit:Atlassian%402023@cluster0.ma7iqqc.mongodb.net/test?retryWrites=true&w=majority', {
+        const con = await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
