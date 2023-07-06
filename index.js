@@ -37,7 +37,7 @@ app.get('/api/data', async (req,res)=>{
     try {
         // const response = await First.find()
         // res.status(200).json(response)
-        const response = 'This is root route.'
+        const response = 'This is root route. fro /api/data'
         res.status(200).json(response)
     } catch (err) {
         res.status(409).json({message:`${err.message}` })
