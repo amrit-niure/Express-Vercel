@@ -25,7 +25,7 @@ const firstLayerSchema = mongoose.Schema({
 })
 const First = mongoose.model('First',firstLayerSchema)
 
-app.get('https://express-vercel-neon-delta.vercel.app/', async (req,res)=>{
+app.get('/', async (req,res)=>{
     try {
         const response = 'This is root route.'
         res.status(200).json(response)
@@ -33,15 +33,15 @@ app.get('https://express-vercel-neon-delta.vercel.app/', async (req,res)=>{
         res.status(409).json({message:`${err.message}` })
     }
 })
-// app.get('/api/data', async (req,res)=>{
-//     try {
-//         const response = await First.find()
-//         res.status(200).json(response)
-//     } catch (err) {
-//         res.status(409).json({message:`${err.message}` })
-//     }
-// })
-app.get('https://express-vercel-neon-delta.vercel.app/api/data/:username', async (req,res)=>{
+app.get('/api/data', async (req,res)=>{
+    try {
+        const response = await First.find()
+        res.status(200).json(response)
+    } catch (err) {
+        res.status(409).json({message:`${err.message}` })
+    }
+})
+app.get('/api/data/:username', async (req,res)=>{
     try {
         const { username } = req.params;
         const response = await First.findOne({username : username})
@@ -50,7 +50,7 @@ app.get('https://express-vercel-neon-delta.vercel.app/api/data/:username', async
         res.status(409).json({message:`${err.message}` })
     }
 })
-app.post('https://express-vercel-neon-delta.vercel.app/api/data', async (req,res)=>{
+app.post('/api/data', async (req,res)=>{
     try {
         let data = req.body
         if(Object.keys(data).length === 0){return res.status(400).json("Invalid Data")}
@@ -63,7 +63,7 @@ app.post('https://express-vercel-neon-delta.vercel.app/api/data', async (req,res
     }
    
 })
-app.post('https://express-vercel-neon-delta.vercel.app/api/data/query/', async (req,res)=>{
+app.post('api/data/query/', async (req,res)=>{
     try {
         let data = req.query
         if(Object.keys(data).length === 0){return res.status(400).json("Invalid Data")}
